@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -11,6 +12,8 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SCRIPT_PATH = REPO_ROOT / ".planr" / "tooling" / "planr.py"
+LAUNCHER_PATH = REPO_ROOT / ".planr" / "tooling" / "planr"
+TEST_LAUNCHER_PATH = REPO_ROOT / ".planr" / "tooling" / "test_planr"
 SKILLS_ROOT = REPO_ROOT / ".codex" / "skills"
 
 
@@ -215,7 +218,7 @@ class PlanrCliTests(unittest.TestCase):
                 "--result",
                 "CLI help rendered successfully.",
                 "--command",
-                "python3 .planr/tooling/planr.py --help",
+                "./.planr/tooling/planr --help",
             )
             self.assertEqual(set_verification.returncode, 0, set_verification.stderr)
 
@@ -254,7 +257,7 @@ class PlanrCliTests(unittest.TestCase):
                         "id": "cli-help",
                         "status": "passed",
                         "result": "CLI help rendered successfully.",
-                        "command": "python3 .planr/tooling/planr.py --help",
+                        "command": "./.planr/tooling/planr --help",
                     }
                 ],
             )
@@ -634,6 +637,34 @@ class PlanrSkillSmokeTests(unittest.TestCase):
             check=False,
         )
 
+    def test_launchers_exist_and_are_executable(self) -> None:
+        self.assertTrue(LAUNCHER_PATH.is_file())
+        self.assertTrue(TEST_LAUNCHER_PATH.is_file())
+        self.assertTrue(os.access(LAUNCHER_PATH, os.X_OK))
+        self.assertTrue(os.access(TEST_LAUNCHER_PATH, os.X_OK))
+
+        planr_help = subprocess.run(
+            [str(LAUNCHER_PATH), "--help"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+            cwd=REPO_ROOT,
+        )
+        self.assertEqual(planr_help.returncode, 0, planr_help.stderr)
+        self.assertIn("{project,plan,status}", planr_help.stdout)
+
+        test_help = subprocess.run(
+            [str(TEST_LAUNCHER_PATH), "--help"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+            cwd=REPO_ROOT,
+        )
+        self.assertEqual(test_help.returncode, 0, test_help.stderr)
+        self.assertIn("usage:", test_help.stdout + test_help.stderr)
+
     def test_shared_baseline_exists_and_setup_docs_copy_it(self) -> None:
         shared_path = SKILLS_ROOT / "planr-shared.md"
         readme = read_text(REPO_ROOT / "README.md")
@@ -646,15 +677,15 @@ class PlanrSkillSmokeTests(unittest.TestCase):
         shared = read_text(SKILLS_ROOT / "planr-shared.md")
 
         expected_commands = [
-            "python3 .planr/tooling/planr.py project init",
-            "python3 .planr/tooling/planr.py plan new",
-            "python3 .planr/tooling/planr.py status show",
-            "python3 .planr/tooling/planr.py status open",
-            "python3 .planr/tooling/planr.py status next",
-            "python3 .planr/tooling/planr.py status ensure-scope",
-            "python3 .planr/tooling/planr.py status set-checklist",
-            "python3 .planr/tooling/planr.py status set-blocker",
-            "python3 .planr/tooling/planr.py status set-verification",
+            "./.planr/tooling/planr project init",
+            "./.planr/tooling/planr plan new",
+            "./.planr/tooling/planr status show",
+            "./.planr/tooling/planr status open",
+            "./.planr/tooling/planr status next",
+            "./.planr/tooling/planr status ensure-scope",
+            "./.planr/tooling/planr status set-checklist",
+            "./.planr/tooling/planr status set-blocker",
+            "./.planr/tooling/planr status set-verification",
         ]
         for command in expected_commands:
             self.assertIn(command, shared)
@@ -687,9 +718,9 @@ class PlanrSkillSmokeTests(unittest.TestCase):
         root_readme = read_text(REPO_ROOT / "README.md")
         planr_readme = read_text(REPO_ROOT / ".planr" / "README.md")
 
-        self.assertIn("python3 .planr/tooling/planr.py project init", root_readme)
+        self.assertIn("./.planr/tooling/planr project init", root_readme)
         self.assertIn("rewrite `.planr/project/*.md`", root_readme)
-        self.assertIn("python3 .planr/tooling/planr.py project init", planr_readme)
+        self.assertIn("./.planr/tooling/planr project init", planr_readme)
         self.assertIn("inspect the target codebase and rewrite `.planr/project/*.md`", planr_readme)
 
     def test_missing_checklist_content_fails(self) -> None:

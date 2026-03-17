@@ -15,7 +15,7 @@
   },
   "notes": [
     "`.planr/status/current.json` is the live summary for this repo. Execution contracts live in `.planr/plans/*.plan.md`.",
-    "Run `python3 .planr/tooling/planr.py project init`, then inspect and rewrite `.planr/project/*.md` for your codebase before trusting ownership or architecture decisions."
+    "Run `./.planr/tooling/planr project init`, then inspect and rewrite `.planr/project/*.md` for your codebase before trusting ownership or architecture decisions."
   ],
   "scopes": []
 }

@@ -12,7 +12,7 @@ A `planr-fix` is invalid if it claims completion without owned scope, honest liv
 ## CLI-First Rule
 
 - Read [../planr-shared.md](../planr-shared.md) first.
-- Use `python3 .planr/tooling/planr.py status show`, `ensure-scope`, `set-checklist`, `set-blocker`, and `set-verification` for `.planr` state whenever they fit.
+- Use `./.planr/tooling/planr status show`, `ensure-scope`, `set-checklist`, `set-blocker`, and `set-verification` for `.planr` state whenever they fit.
 - There is no `planr.py fix` command today. Use normal repo tools for implementation, tests, and scoped verification.
 
 ## Required Inputs

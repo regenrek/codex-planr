@@ -36,7 +36,7 @@ PROJECT_INIT_NEXT_STEP = (
 )
 DEFAULT_STATUS_NOTES = [
     "`.planr/status/current.json` is the live summary for this repo. Execution contracts live in `.planr/plans/*.plan.md`.",
-    "Run `python3 .planr/tooling/planr.py project init`, then inspect and rewrite `.planr/project/*.md` for the target repo before trusting ownership or architecture decisions.",
+    "Run `./.planr/tooling/planr project init`, then inspect and rewrite `.planr/project/*.md` for the target repo before trusting ownership or architecture decisions.",
 ]
 PROJECT_TEMPLATE_TEXTS = {
     "product.md": """# Product

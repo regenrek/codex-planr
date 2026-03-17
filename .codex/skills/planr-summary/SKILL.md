@@ -12,7 +12,7 @@ A `planr-summary` is invalid if it invents outcomes, hides blockers, collapses i
 ## CLI-First Rule
 
 - Read [../planr-shared.md](../planr-shared.md) first.
-- Start with `python3 .planr/tooling/planr.py status show [--scope ...]` for live scope context before reading raw status JSON.
+- Start with `./.planr/tooling/planr status show [--scope ...]` for live scope context before reading raw status JSON.
 - There is no summary command today. Build the recap from the recorded `.planr` evidence, then drop to plan files, diff, and code only when the recorded state is insufficient.
 
 ## Required Inputs

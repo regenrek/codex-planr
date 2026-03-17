@@ -12,7 +12,7 @@ A `planr-review` is invalid if it skips explicit owned scope or skips a path-sco
 ## CLI-First Rule
 
 - Read [../planr-shared.md](../planr-shared.md) first.
-- Use `python3 .planr/tooling/planr.py status show [--scope ...]` for live scope context before dropping to raw `.planr/status/current.json`.
+- Use `./.planr/tooling/planr status show [--scope ...]` for live scope context before dropping to raw `.planr/status/current.json`.
 - There is no `planr.py review` command today. The actual verdict still requires path-scoped Git evidence plus direct inspection of code and tests.
 
 ## Owned Review Scope

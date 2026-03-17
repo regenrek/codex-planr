@@ -20,7 +20,7 @@ If a plan item cannot be checked against repo evidence later, it is too vague no
 
 ## Project Context Pack
 
-Before finalizing architecture-sensitive planning, confirm that the repo already has equivalent durable context or run `python3 .planr/tooling/planr.py project init` to scaffold the bootstrap pack under `.planr/project/`:
+Before finalizing architecture-sensitive planning, confirm that the repo already has equivalent durable context or run `./.planr/tooling/planr project init` to scaffold the bootstrap pack under `.planr/project/`:
 
 - `product.md`
 - `ownership.md`

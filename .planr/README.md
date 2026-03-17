@@ -57,8 +57,10 @@ Use it to store:
 The canonical path is:
 
 ```bash
-python3 .planr/tooling/planr.py
+./.planr/tooling/planr
 ```
+
+The wrapper prefers `python3` and falls back to `python` when `python` is Python 3.
 
 If you are not running from the repo root, pass `--repo-root <path>`.
 
@@ -67,13 +69,13 @@ If you are not running from the repo root, pass `--repo-root <path>`.
 Bootstrap or refresh the starter pack under `.planr/project/`:
 
 ```bash
-python3 .planr/tooling/planr.py project init
+./.planr/tooling/planr project init
 ```
 
 Overwrite existing `.planr/project/*.md` files with the starter templates:
 
 ```bash
-python3 .planr/tooling/planr.py project init --force
+./.planr/tooling/planr project init --force
 ```
 
 `project init` creates or refreshes the starter pack and canonical project-context metadata. It does **not** analyze the target repository or make repo-specific ownership decisions by itself.
@@ -85,25 +87,25 @@ After running it, the agent must inspect the target codebase and rewrite `.planr
 Show the full live status:
 
 ```bash
-python3 .planr/tooling/planr.py status show
+./.planr/tooling/planr status show
 ```
 
 Show one scope:
 
 ```bash
-python3 .planr/tooling/planr.py status show --scope <scope-id>
+./.planr/tooling/planr status show --scope <scope-id>
 ```
 
 Show all open scopes:
 
 ```bash
-python3 .planr/tooling/planr.py status open
+./.planr/tooling/planr status open
 ```
 
 Show the next deterministic open scope:
 
 ```bash
-python3 .planr/tooling/planr.py status next
+./.planr/tooling/planr status next
 ```
 
 ### Plan Scaffolding
@@ -111,7 +113,7 @@ python3 .planr/tooling/planr.py status next
 Create a new deterministic plan scaffold:
 
 ```bash
-python3 .planr/tooling/planr.py plan new \
+./.planr/tooling/planr plan new \
   --title "Example Scope" \
   --overview "One-sentence plan overview." \
   --todo phase-one="First concrete outcome." \
@@ -123,7 +125,7 @@ python3 .planr/tooling/planr.py plan new \
 Create or update a scope shell:
 
 ```bash
-python3 .planr/tooling/planr.py status ensure-scope \
+./.planr/tooling/planr status ensure-scope \
   --id <scope-id> \
   --title "Scope Title" \
   --status in_progress \
@@ -135,7 +137,7 @@ python3 .planr/tooling/planr.py status ensure-scope \
 Set one checklist item:
 
 ```bash
-python3 .planr/tooling/planr.py status set-checklist \
+./.planr/tooling/planr status set-checklist \
   --scope <scope-id> \
   --item-id <item-id> \
   --content "Concrete checklist item." \
@@ -152,7 +154,7 @@ Use these when a new or existing item must sit in the middle of a deterministic 
 Set one blocker or unverified item:
 
 ```bash
-python3 .planr/tooling/planr.py status set-blocker \
+./.planr/tooling/planr status set-blocker \
   --scope <scope-id> \
   --item-id <item-id> \
   --content "What remains blocked or unverified." \
@@ -163,11 +165,11 @@ python3 .planr/tooling/planr.py status set-blocker \
 Set one verification record:
 
 ```bash
-python3 .planr/tooling/planr.py status set-verification \
+./.planr/tooling/planr status set-verification \
   --scope <scope-id> \
   --verification-id <verification-id> \
   --status passed \
-  --command "python3 .planr/tooling/planr.py --help" \
+  --command "./.planr/tooling/planr --help" \
   --result "CLI help rendered successfully." \
   --after-id <sibling-item-id>
 ```
@@ -234,10 +236,12 @@ Keep `status/current.json` as the summary layer rather than duplicating the full
 When the shared CLI changes, run:
 
 ```bash
-python3 .planr/tooling/planr.py --help
-python3 .planr/tooling/test_planr.py
+./.planr/tooling/planr --help
+./.planr/tooling/test_planr
 python3 -m py_compile .planr/tooling/planr.py .planr/tooling/test_planr.py
 ```
+
+For the raw `py_compile` check, use whichever command on your machine points to Python 3 (`python3` or `python`).
 
 For scoped diff hygiene, use:
 

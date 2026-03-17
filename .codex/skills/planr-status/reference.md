@@ -101,8 +101,8 @@ Weak evidence:
 When the user asks queue-style status questions, start with the shared CLI:
 
 ```bash
-python3 .planr/tooling/planr.py status open
-python3 .planr/tooling/planr.py status next
+./.planr/tooling/planr status open
+./.planr/tooling/planr status next
 ```
 
 Interpretation:

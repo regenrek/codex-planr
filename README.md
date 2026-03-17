@@ -38,8 +38,10 @@ mkdir -p .codex/skills
 cp -R /path/to/codex-planr/.planr .
 cp -R /path/to/codex-planr/.codex/skills/planr-* .codex/skills/
 cp /path/to/codex-planr/.codex/skills/planr-shared.md .codex/skills/
-python3 .planr/tooling/planr.py project init
+./.planr/tooling/planr project init
 ```
+
+`./.planr/tooling/planr` prefers `python3` and falls back to `python` when `python` is Python 3.
 
 `project init` scaffolds or refreshes the starter pack under `.planr/project/` and ensures `.planr/status/current.json` points at it. It does **not** infer real product, ownership, flow, or state boundaries for you.
 

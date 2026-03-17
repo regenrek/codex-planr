@@ -12,8 +12,8 @@ A `planr-plan` is invalid if it skips the real code, omits per-phase checklists,
 ## CLI-First Rule
 
 - Read [../planr-shared.md](../planr-shared.md) first.
-- If `.planr/project/*.md` is missing or still generic starter text, run `python3 .planr/tooling/planr.py project init`, then inspect the target repo and rewrite those files before making strong architecture or ownership decisions.
-- Use `python3 .planr/tooling/planr.py plan new ...` to scaffold new plan files instead of hand-writing boilerplate.
+- If `.planr/project/*.md` is missing or still generic starter text, run `./.planr/tooling/planr project init`, then inspect the target repo and rewrite those files before making strong architecture or ownership decisions.
+- Use `./.planr/tooling/planr plan new ...` to scaffold new plan files instead of hand-writing boilerplate.
 - There is no general plan-update command today. After scaffolding, edit the existing plan body directly.
 
 ## Required Inputs
@@ -98,7 +98,7 @@ Do not:
 ## Required Workflow
 
 1. Start from the source request and inspect the real owner layers before planning.
-2. If this is a new tracked plan, scaffold it with `python3 .planr/tooling/planr.py plan new ...`.
+2. If this is a new tracked plan, scaffold it with `./.planr/tooling/planr plan new ...`.
 3. Write `Scope Decision`, `Ownership Target`, `Existing Leverage`, phase checklists, `Out Of Scope`, `Verification`, and `Acceptance Criteria`.
 4. For task-shaped work, add `Source`, `Why this task exists`, `Hard-Cut`, `Relevant Files`, and `Notes` when they help later execution.
 5. Make every checkbox concrete, falsifiable, and reviewable against repo evidence.

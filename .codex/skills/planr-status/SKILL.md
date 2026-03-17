@@ -12,7 +12,7 @@ A `planr-status` is invalid if it skips explicit scope, trusts checked boxes wit
 ## CLI-First Rule
 
 - Read [../planr-shared.md](../planr-shared.md) first.
-- Start with `python3 .planr/tooling/planr.py status show`, `open`, and `next` before reading raw status JSON by hand.
+- Start with `./.planr/tooling/planr status show`, `open`, and `next` before reading raw status JSON by hand.
 - Only use `ensure-scope`, `set-checklist`, `set-blocker`, or `set-verification` when the user explicitly asked for status reconciliation and the command surface fits.
 - Drop to plan files, path-scoped Git diff, and implementation files only when the CLI output and recorded verification are insufficient.
 
