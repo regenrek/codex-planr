@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-03-17T12:00:00Z",
+  "global_status": "open",
+  "project_context": {
+    "root": ".planr/project",
+    "files": [
+      ".planr/project/product.md",
+      ".planr/project/ownership.md",
+      ".planr/project/flows.md",
+      ".planr/project/state-ssot.md",
+      ".planr/project/constraints.md",
+      ".planr/project/quality-gates.md"
+    ]
+  },
+  "notes": [
+    "`.planr/status/current.json` is the live summary for this repo. Execution contracts live in `.planr/plans/*.plan.md`.",
+    "Bootstrap: customize `.planr/project/*.md` for your codebase, then add scopes with `planr-plan` and `.planr/tooling/planr.py`."
+  ],
+  "scopes": []
+}
